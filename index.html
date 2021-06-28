@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta name="author" content="Matheus Dimer" />
+        <meta name="description" content="Listagem de clientes" />
+        <meta name="keywords" content="Clientes, Cadastro, Listagem" />
+        <title>Cadastro de Clientes</title>
+
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/popup.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Listagem de clientes</h1>
+            <div class="row-content">
+                <h3>Matheus</h3>
+                <span class="material-icons">account_circle</span>
+            </div>
+        </header>
+
+        <main>
+            <nav>
+                <div class="row-content">
+                    <button class="add" onclick="adicionar()">
+                        <span class="material-icons">add</span>
+                        Adicionar
+                    </button>
+                    <button onclick="loadData()">
+                        <span class="material-icons">refresh</span>
+                        Atualizar
+                    </button>
+                </div>
+                <div class="row-content search">
+                    <input
+                        type="text"
+                        placeholder="Pesquisar por nome"
+                        id="search"
+                    />
+                    <button class="btn-text" onclick="filter()">
+                        <span class="material-icons">search</span>
+                    </button>
+                </div>
+            </nav>
+            <table id="cliente-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Endereço</th>
+                        <th>Criado em</th>
+                        <th>Alterado em</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody id="list"></tbody>
+            </table>
+            <div id="no-content">
+                <h3>Não há nenhum cliente por aqui.</h3>
+            </div>
+
+            <div class="loading"></div>
+            <div class="md-component" value="cliente-modal"></div>
+            <div class="md-component" value="popup-message"></div>
+        </main>
+
+        <footer>
+            <p>
+                Matheus de Lima Dimer -
+                <strong>Todos os direitos reservados</strong>. Beba água
+            </p>
+        </footer>
+
+        <script type="module" src="js/index.js"></script>
+    </body>
+</html>

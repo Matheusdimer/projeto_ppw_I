@@ -1,0 +1,33 @@
+<div class="modal">
+    <div>
+        <h2 class="modal-title">Adicionando cliente:</h2>
+        <form id="clienteForm">
+            <input type="hidden" id="_id" />
+            <div class="row-content">
+                <div class="label-input">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" />
+                </div>
+                <div class="label-input">
+                    <label for="email">E-mail:</label>
+                    <input type="text" id="email" />
+                </div>
+            </div>
+            <div class="row-content">
+                <div class="label-input">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" id="telefone" />
+                </div>
+                <div class="label-input">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" id="endereco" />
+                </div>
+            </div>
+        </form>
+
+        <div class="footer-btn">
+            <button onclick="saveCliente()" class="save">Salvar</button>
+            <button onclick="toggleModal()">Cancelar</button>
+        </div>
+    </div>
+</div>
