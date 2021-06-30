@@ -57,41 +57,49 @@ function saveCliente() {
 }
 
 function novoCliente(cliente) {
-    showMessage("info", "Adicionando novo cliente...");
-    fetch(url, {
-        method: "POST",
-        headers: new Headers({ "Content-Type": "application/json" }),
-        body: JSON.stringify(cliente),
-    }).then((res) => {
-        if (res.status === 200) {
-            toggleModal();
-            loadData();
-            showMessage("success", "Cliente adicionado com sucesso!");
-        } else {
-            showMessage("error", "Erro ao cadastrar cliente.");
-        }
-    });
+    if (validForm(cliente)) {
+        showMessage("info", "Adicionando novo cliente...");
+        fetch(url, {
+            method: "POST",
+            headers: new Headers({ "Content-Type": "application/json" }),
+            body: JSON.stringify(cliente),
+        }).then((res) => {
+            if (res.status === 200) {
+                toggleModal();
+                loadData();
+                showMessage("success", "Cliente adicionado com sucesso!");
+            } else {
+                showMessage("error", "Erro ao cadastrar cliente.");
+            }
+        });
+    } else {
+        showMessage("error", "Há campos não preenchidos no formulário.");
+    }
 }
 
 function updateCliente(cliente) {
     const id = cliente._id;
     delete cliente._id;
 
-    showMessage("info", "Alterando cliente...");
+    if (validForm(cliente)) {
+        showMessage("info", "Alterando cliente...");
 
-    fetch(`${url}/${id}`, {
-        method: "PUT",
-        headers: new Headers({ "Content-Type": "application/json" }),
-        body: JSON.stringify(cliente),
-    }).then((res) => {
-        if (res.status === 200) {
-            loadData();
-            toggleModal();
-            showMessage("success", "Cliente alterado com sucesso!");
-        } else {
-            showMessage("error", "Erro ao atualizar cliente.");
-        }
-    });
+        fetch(`${url}/${id}`, {
+            method: "PUT",
+            headers: new Headers({ "Content-Type": "application/json" }),
+            body: JSON.stringify(cliente),
+        }).then((res) => {
+            if (res.status === 200) {
+                loadData();
+                toggleModal();
+                showMessage("success", "Cliente alterado com sucesso!");
+            } else {
+                showMessage("error", "Erro ao atualizar cliente.");
+            }
+        });
+    } else {
+        showMessage("error", "Há campos não preenchidos no formulário.");
+    }
 }
 
 function edit(clienteId) {
@@ -140,6 +148,10 @@ function filter() {
 
 function clearFilter() {
     search.value = '';
+}
+
+function validForm(form) {
+    return form.nome && form.email && form.telefone && form.endereco;
 }
 
 function renderList(clientes) {
